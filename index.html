@@ -1,129 +1,99 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta property="og:title" content="Ankit Mandal - Portfolio" />
-<meta property="og:description" content="Check out my game development and design projects." />
-<meta property="og:image" content="https://ankit-mandal006.github.io/thumbnail.png" />
-<meta property="og:url" content="https://ankit-mandal006.github.io/" />
+  <meta property="og:title" content="Ankit Mandal - Portfolio" />
+  <meta property="og:description" content="Check out my game development and design projects." />
+  <meta property="og:image" content="https://ankit-mandal006.github.io/thumbnail.png" />
+  <meta property="og:url" content="https://ankit-mandal006.github.io/" />
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ankit Mandal</title>
+
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+  <!-- Background animation layer -->
+  <div class="bg-anim" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
   <!-- Intro Section -->
   <section class="intro">
     <div class="profile-img">
-      <img src="My Photo.jpg" alt="Profile" />
+      <img src="My Photo.jpg" alt="Profile photo of Ankit Mandal" />
     </div>
     <div class="intro-text">
-      <h1>Ankit Mandal</h1>
-      <p class="title">Game Developer & Designer</p>
-      <p class="bio">I create immersive games and stylized worlds, blending gameplay and aesthetics with clean logic and creativity.</p>
+      <h1 class="name">Ankit Mandal</h1>
+      <p class="typing-text"></p>
+      <p class="bio">
+        I create immersive games and stylized worlds, blending gameplay and aesthetics with clean logic and creativity.
+      </p>
       <div class="social-links">
-  <a href="https://www.linkedin.com/in/ankit-mandal-724890359/" target="_blank" rel="noopener noreferrer">
-    <img src="linkedin.svg" alt="LinkedIn" />
-  </a>
-  <a href="https://github.com/Ankit-Mandal006" target="_blank" rel="noopener noreferrer">
-    <img src="github.svg" alt="GitHub" />
-  </a>
-<a href="https://ankit-mandal006.itch.io/" target="_blank" rel="noopener noreferrer">
-    <img src="itchio.svg" alt="ItchIo" />
-  </a>
-<a href="https://www.artstation.com/ankitmandal006/albums/14439986" target="_blank" rel="noopener noreferrer">
-    <img src="artstation.svg" alt="ArtStation" />
-  </a>
-<!-- Gmail -->
-<a href="mailto:mandal.ankit190506@gmail.com" onclick="copyToClipboard('mandal.ankit190506@gmail.com'); return true;" title="Click to email & copy email">
-  <img src="gmail.svg" alt="Gmail" />
-</a>
-
-<!-- Phone -->
-<a href="#" data-copy="+919234435686" onclick="copyToClipboard(this.dataset.copy); return false;" title="Click to copy phone number">
-  <img src="call.svg" alt="Call" />
-</a>
-</div>
-<a href="AnkitMandalResume.pdf" class="resume-btn" target="_blank" rel="noopener noreferrer">Resume ↓</a>
+        <a href="https://www.linkedin.com/in/ankit-mandal-724890359/" target="_blank"><img src="linkedin.svg" alt="LinkedIn" /></a>
+        <a href="https://github.com/Ankit-Mandal006" target="_blank"><img src="github.svg" alt="GitHub" /></a>
+        <a href="https://ankit-mandal006.itch.io/" target="_blank"><img src="itchio.svg" alt="Itch.io" /></a>
+        <a href="https://www.artstation.com/ankitmandal006/albums/14439986" target="_blank"><img src="artstation.svg" alt="ArtStation" /></a>
+        <a href="mailto:mandal.ankit190506@gmail.com"><img src="gmail.svg" alt="Gmail" /></a>
+        <a href="#" data-copy="+919234435686"><img src="call.svg" alt="Phone" /></a>
+      </div>
+      <a href="AnkitMandalResume.pdf" class="resume-btn" target="_blank">Resume ↓</a>
     </div>
   </section>
 
   <!-- Toggle Buttons -->
   <div class="switch-buttons">
-    <button onclick="showSection('projects')">Projects</button>
-    <button onclick="showSection('artworks')">Artworks</button>
+    <button type="button" onclick="showSection('projects')">Projects</button>
+    <button type="button" onclick="showSection('artworks')">Artworks</button>
   </div>
 
-  <!-- Project Section -->
-<section id="projects" class="section active">
-
-  <!-- Featured Game -->
-  <div class="grid-container">
-    <a href="https://ankit-mandal006.itch.io/wither-woods" target="_blank" class="game-card-link">
-      <div class="game-card featured-card">
-        <div class="overlay-container">
-          <img src="WitherWoods.gif" alt="Wither Woods" />
-          <div class="overlay-text">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zm-8 4a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/>
-              <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/>
-            </svg>
-            Play on Itch.io
+  <!-- Projects Section -->
+  <section id="projects" class="section active">
+    <div class="grid-container">
+      <a href="https://ankit-mandal006.itch.io/wither-woods" target="_blank" class="game-card-link">
+        <div class="game-card">
+          <div class="overlay-container">
+            <img src="WitherWoods.gif" alt="Wither Woods gameplay preview" />
+            <div class="overlay-text">Play on Itch.io</div>
           </div>
+          <h3>Wither Woods</h3>
+          <p>A 3D Horror game.</p>
         </div>
-        <h3>Wither Woods</h3>
-        <p>A 3D Horror game.</p>
-      </div>
-    </a>
-  </div>
+      </a>
 
-  <!-- Other Projects -->
-  <div class="grid-container">
-    <a href="https://ankit-mandal006.itch.io/mr-m" target="_blank" class="game-card-link">
-      <div class="game-card">
-        <div class="overlay-container">
-          <img src="Mr_M.gif" alt="Mr.M" />
-          <div class="overlay-text">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zm-8 4a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/>
-              <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/>
-            </svg>
-            Play on Itch.io
+      <a href="https://ankit-mandal006.itch.io/mr-m" target="_blank" class="game-card-link">
+        <div class="game-card">
+          <div class="overlay-container">
+            <img src="Mr_M.gif" alt="Mr.M gameplay preview" />
+            <div class="overlay-text">Play on Itch.io</div>
           </div>
+          <h3>Mr.M</h3>
+          <p>A 2D casual game with 4 game modes.</p>
         </div>
-        <h3>Mr.M</h3>
-        <p>A 2D casual game with 4 game modes.</p>
-      </div>
-    </a>
+      </a>
 
-    <a href="https://ankit-mandal006.itch.io/merrycatcher" target="_blank" class="game-card-link">
-      <div class="game-card">
-        <div class="overlay-container">
-          <img src="Merry Catcher.gif" alt="Merry Catcher" />
-          <div class="overlay-text">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zm-8 4a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/>
-              <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/>
-            </svg>
-            Play on Itch.io
+      <a href="https://ankit-mandal006.itch.io/merrycatcher" target="_blank" class="game-card-link">
+        <div class="game-card">
+          <div class="overlay-container">
+            <img src="Merry Catcher.gif" alt="Merry Catcher gameplay preview" />
+            <div class="overlay-text">Play on Itch.io</div>
           </div>
+          <h3>Merry Catcher</h3>
+          <p>Grab gifts but dodge the bombs!</p>
         </div>
-        <h3>Merry Catcher</h3>
-        <p>This winter, Santa showers gifts—grab them, but dodge the bombs</p>
-      </div>
-    </a>
-  </div>
+      </a>
+    </div>
+  </section>
 
-</section>
-
-
- <!-- Artworks Section -->
+<!-- Artworks Section -->
 <section id="artworks" class="section">
+  <h2>Artworks</h2>
   <div class="grid-container">
 
-    
+    <!-- Artwork 1 -->
     <a href="https://www.artstation.com/artwork/0lVBq5" target="_blank" class="game-card-link">
       <div class="game-card">
         <div class="overlay-container">
@@ -141,12 +111,7 @@
       </div>
     </a>
 
-  </div>
-
-  <div class="grid-container">
-
-  <div class="grid-container">
-
+    <!-- Artwork 2 -->
     <a href="https://www.artstation.com/artwork/WXVqDQ" target="_blank" class="game-card-link">
       <div class="game-card">
         <div class="overlay-container">
@@ -164,6 +129,7 @@
       </div>
     </a>
 
+    <!-- Artwork 3 -->
     <a href="https://www.artstation.com/artwork/GvKOK1" target="_blank" class="game-card-link">
       <div class="game-card">
         <div class="overlay-container">
@@ -181,10 +147,7 @@
       </div>
     </a>
 
-  </div>
-
-  <div class="grid-container">
-
+    <!-- Artwork 4 -->
     <a href="https://www.artstation.com/artwork/Bk50A6" target="_blank" class="game-card-link">
       <div class="game-card">
         <div class="overlay-container">
@@ -202,6 +165,7 @@
       </div>
     </a>
 
+    <!-- Artwork 5 -->
     <a href="https://www.artstation.com/artwork/2B36AB" target="_blank" class="game-card-link">
       <div class="game-card">
         <div class="overlay-container">
@@ -219,10 +183,7 @@
       </div>
     </a>
 
-  </div>
-
-  <div class="grid-container">
-
+    <!-- Artwork 6 -->
     <a href="https://www.artstation.com/artwork/NqV0A1" target="_blank" class="game-card-link">
       <div class="game-card">
         <div class="overlay-container">
@@ -240,6 +201,7 @@
       </div>
     </a>
 
+    <!-- Artwork 7 -->
     <a href="https://www.artstation.com/artwork/qJwzaN" target="_blank" class="game-card-link">
       <div class="game-card">
         <div class="overlay-container">
@@ -257,10 +219,7 @@
       </div>
     </a>
 
-  </div>
-
-  <div class="grid-container">
-
+    <!-- Artwork 8 -->
     <a href="https://www.artstation.com/artwork/wr3GlY" target="_blank" class="game-card-link">
       <div class="game-card">
         <div class="overlay-container">
@@ -282,7 +241,6 @@
 </section>
 
 
-
   <!-- Education -->
   <section class="info-block">
     <h2>Education</h2>
@@ -301,44 +259,10 @@
   <!-- About Me -->
   <section class="info-block">
     <h2>About Me</h2>
-    <p>Hi, I'm Ankit! <br>
-      I'm a passionate game developer and digital artist based in India. I design and build immersive, stylized game worlds that combine gameplay, visuals, and storytelling into a cohesive experience. Whether it's crafting 3D assets in Blender or building game mechanics in Unity and C#, I'm always focused on creating something that feels great to play.</p>
-    <p>I started out as an artist and gradually dove deep into game programming — blending creativity with logic is where I thrive. I’m always eager to experiment with new tools, sharpen my problem-solving skills, and tackle challenges that push my limits.</p>
-    <p>Curious to learn more? You can check out my resume above or reach out to me on LinkedIn or GitHub anytime!</p>
+    <p>Hi, I'm Ankit! I'm a passionate game developer and digital artist based in India. I design and build immersive, stylized game worlds that combine gameplay, visuals, and storytelling into a cohesive experience.</p>
   </section>
 
-  <!-- Script -->
-  <script>
-    function showSection(id) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-  </script>
-<script>
-  function copyToClipboard(text) {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert(`${text} copied to clipboard!`);
-      }).catch(err => {
-        console.error('Failed to copy: ', err);
-        alert('Copy failed. Try manually.');
-      });
-    } else {
-      // Fallback for older browsers
-      const textarea = document.createElement('textarea');
-      textarea.value = text;
-      document.body.appendChild(textarea);
-      textarea.select();
-      try {
-        document.execCommand('copy');
-        alert(`${text} copied to clipboard!`);
-      } catch (err) {
-        alert('Copy not supported');
-      }
-      document.body.removeChild(textarea);
-    }
-  }
-</script>
-
+  <!-- Scripts -->
+  <script src="script.js"></script>
 </body>
 </html>
