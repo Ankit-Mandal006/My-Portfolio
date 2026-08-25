@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin — Ankit's Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #080b10; --surface: #0f1520; --border: #1e2d42;
+      --accent: #b9fff8; --accent2: #5effd8; --danger: #ff5e7a;
+      --text: #c8d8e8; --muted: #4a6070; --card: #111c2a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Syne', sans-serif; min-height: 100vh; }
+
+    /* LOGIN */
+    #login-screen {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 50% 40%, #0d1f30 0%, #080b10 70%);
+    }
+    .login-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 48px 40px; width: 100%; max-width: 380px;
+      text-align: center; box-shadow: 0 0 60px rgba(185,255,248,0.05);
+    }
+    .login-box h1 { font-size: 1.8rem; font-weight: 800; color: var(--accent); margin-bottom: 8px; }
+    .login-box p  { color: var(--muted); font-size: 0.85rem; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; }
+    .login-box input {
+      width: 100%; padding: 14px 18px; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; color: var(--text); font-size: 1rem;
+      font-family: 'JetBrains Mono', monospace; letter-spacing: 3px;
+      margin-bottom: 16px; outline: none; transition: border-color 0.2s;
+    }
+    .login-box input:focus { border-color: var(--accent); }
+    .btn-primary {
+      width: 100%; padding: 14px; background: var(--accent); color: #080b10;
+      border: none; border-radius: 10px; font-size: 1rem; font-weight: 700;
+      font-family: 'Syne', sans-serif; cursor: pointer; transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--accent2); }
+    #login-error { color: var(--danger); font-size: 0.82rem; margin-top: 12px; font-family: 'JetBrains Mono', monospace; display: none; }
+
+    /* PANEL */
+    #admin-panel { display: none; }
+    header {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    header h1 { font-size: 1.2rem; font-weight: 800; color: var(--accent); }
+    .header-right { display: flex; align-items: center; gap: 12px; }
+    .logout-btn {
+      background: transparent; border: 1px solid var(--border); color: var(--muted);
+      padding: 8px 14px; border-radius: 8px; cursor: pointer;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; transition: border-color 0.2s, color 0.2s;
+    }
+    .logout-btn:hover { border-color: var(--danger); color: var(--danger); }
+
+    .admin-body { max-width: 1100px; margin: 0 auto; padding: 36px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    @media (max-width: 768px) { .admin-body { grid-template-columns: 1fr; } header { padding: 16px 20px; } }
+
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .panel-header { padding: 18px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .panel-header h2 { font-size: 0.9rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+    .badge { background: var(--border); color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; padding: 3px 10px; border-radius: 20px; }
+    .panel-body { padding: 22px; }
+
+    label { display: block; font-size: 0.72rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 5px; font-family: 'JetBrains Mono', monospace; }
+    input[type="text"], input[type="url"], textarea {
+      width: 100%; padding: 10px 13px; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-size: 0.88rem;
+      font-family: 'JetBrains Mono', monospace; outline: none;
+      transition: border-color 0.2s; margin-bottom: 13px; resize: vertical;
+    }
+    input:focus, textarea:focus { border-color: var(--accent); }
+    .add-btn {
+      width: 100%; padding: 11px; background: transparent; border: 1px solid var(--accent);
+      color: var(--accent); border-radius: 8px; font-size: 0.88rem; font-weight: 600;
+      font-family: 'Syne', sans-serif; cursor: pointer; transition: background 0.2s, color 0.2s;
+    }
+    .add-btn:hover { background: var(--accent); color: #080b10; }
+
+    /* ITEMS */
+    .items-panel { grid-column: 1 / -1; }
+    .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; padding: 22px; }
+    .empty-state { padding: 40px; text-align: center; color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
+
+    .item-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden; position: relative; transition: border-color 0.2s;
+    }
+    .item-card:hover { border-color: var(--accent); }
+    .item-card img { width: 100%; height: 120px; object-fit: cover; background: var(--bg); display: block; }
+    .item-no-img {
+      width: 100%; height: 120px; background: #0d1520;
+      display: flex; align-items: center; justify-content: center; flex-direction: column;
+      gap: 6px; color: var(--muted); font-size: 0.7rem; font-family: 'JetBrains Mono', monospace;
+    }
+    .item-card-body { padding: 10px 12px; }
+    .item-card-body h4 { font-size: 0.85rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
+    .item-card-body p  { font-size: 0.72rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .item-type-tag {
+      position: absolute; top: 7px; left: 7px; background: rgba(8,11,16,0.85);
+      color: var(--accent); font-size: 0.62rem; font-family: 'JetBrains Mono', monospace;
+      padding: 2px 7px; border-radius: 20px; border: 1px solid var(--border); text-transform: uppercase;
+    }
+    .delete-btn {
+      position: absolute; top: 7px; right: 7px; background: rgba(255,94,122,0.15);
+      border: 1px solid var(--danger); color: var(--danger); width: 26px; height: 26px;
+      border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; transition: background 0.2s;
+    }
+    .delete-btn:hover { background: var(--danger); color: white; }
+
+    /* BOTTOM BAR */
+    .bottom-bar {
+      grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px 28px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+    }
+    .bottom-left h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .bottom-left p  { font-size: 0.8rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; line-height: 1.7; }
+    .bottom-left p span { color: var(--accent); }
+    .bottom-right { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .import-label {
+      padding: 12px 20px; background: transparent; border: 1px solid var(--border);
+      color: var(--muted); border-radius: 10px; font-size: 0.88rem; font-weight: 600;
+      font-family: 'Syne', sans-serif; cursor: pointer; transition: border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .import-label:hover { border-color: var(--accent); color: var(--accent); }
+    #import-input { display: none; }
+
+    .export-btn {
+      padding: 12px 28px; background: var(--accent); color: #080b10; border: none;
+      border-radius: 10px; font-size: 0.95rem; font-weight: 800; font-family: 'Syne', sans-serif;
+      cursor: pointer; transition: background 0.2s, transform 0.1s; white-space: nowrap;
+    }
+    .export-btn:hover { background: var(--accent2); transform: translateY(-1px); }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <h1>Admin Panel</h1>
+    <p>ankit-mandal006.github.io</p>
+    <input type="password" id="password-input" placeholder="Enter password"
+           onkeydown="if(event.key==='Enter') login()" />
+    <button class="btn-primary" onclick="login()">Enter</button>
+    <p id="login-error">Wrong password. Try again.</p>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div id="admin-panel">
+  <header>
+    <h1>⚡ Portfolio Admin</h1>
+    <div class="header-right">
+      <span id="item-count" style="font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--muted);">0 items</span>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </header>
+
+  <div class="admin-body">
+
+    <!-- Add Project -->
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Add Project</h2>
+        <span class="badge" id="proj-count">0 projects</span>
+      </div>
+      <div class="panel-body">
+        <label>Title</label>
+        <input type="text" id="p-title" placeholder="My Awesome Game" />
+        <label>Description</label>
+        <textarea id="p-desc" rows="2" placeholder="Short description..."></textarea>
+        <label>Image filename (must be in repo root)</label>
+        <input type="text" id="p-img" placeholder="MyGame.gif" />
+        <label>Itch.io Link</label>
+        <input type="url" id="p-link" placeholder="https://ankit-mandal006.itch.io/..." />
+        <button class="add-btn" onclick="addItem('project')">＋ Add Project</button>
+      </div>
+    </div>
+
+    <!-- Add Artwork -->
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Add Artwork</h2>
+        <span class="badge" id="art-count">0 artworks</span>
+      </div>
+      <div class="panel-body">
+        <label>Title</label>
+        <input type="text" id="a-title" placeholder="Character Concept Art" />
+        <label>Description</label>
+        <textarea id="a-desc" rows="2" placeholder="#Traditional Art"></textarea>
+        <label>Image filename (must be in repo root)</label>
+        <input type="text" id="a-img" placeholder="MyArt.jpg" />
+        <label>ArtStation Link</label>
+        <input type="url" id="a-link" placeholder="https://www.artstation.com/artwork/..." />
+        <button class="add-btn" onclick="addItem('artwork')">＋ Add Artwork</button>
+      </div>
+    </div>
+
+    <!-- All Items -->
+    <div class="panel items-panel">
+      <div class="panel-header">
+        <h2>All Items</h2>
+        <span class="badge" id="total-badge">0 total</span>
+      </div>
+      <div id="items-grid" class="items-grid">
+        <div class="empty-state">No items yet. Import your existing data.json or add items above.</div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="bottom-bar">
+      <div class="bottom-left">
+        <h3>Manage data.json</h3>
+        <p>
+          Import your current <span>data.json</span> to edit it, then export when done.<br/>
+          Replace the file in your repo → <span>git add . && git commit -m "update" && git push</span>
+        </p>
+      </div>
+      <div class="bottom-right">
+        <label class="import-label" for="import-input">↑ Import data.json</label>
+        <input type="file" id="import-input" accept=".json" onchange="importJSON(event)" />
+        <button class="export-btn" onclick="exportJSON()">↓ Export data.json</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ── CHANGE THIS PASSWORD ──────────────────────────
+  const ADMIN_PASSWORD = "ankit2024";
+  // ─────────────────────────────────────────────────
+
+  let portfolioData = { projects: [], artworks: [] };
+
+  // LOGIN
+  function login() {
+    if (document.getElementById("password-input").value === ADMIN_PASSWORD) {
+      document.getElementById("login-screen").style.display = "none";
+      document.getElementById("admin-panel").style.display = "block";
+      loadDraft();
+    } else {
+      const err = document.getElementById("login-error");
+      err.style.display = "block";
+      setTimeout(() => err.style.display = "none", 2500);
+    }
+  }
+
+  function logout() {
+    document.getElementById("login-screen").style.display = "flex";
+    document.getElementById("admin-panel").style.display = "none";
+    document.getElementById("password-input").value = "";
+  }
+
+  // DRAFT (survives page refresh within the same session)
+  function loadDraft() {
+    const draft = sessionStorage.getItem("portfolioDraft");
+    if (draft) portfolioData = JSON.parse(draft);
+    renderItems();
+  }
+  function saveDraft() {
+    sessionStorage.setItem("portfolioDraft", JSON.stringify(portfolioData));
+  }
+
+  // IMPORT existing data.json
+  function importJSON(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      try {
+        portfolioData = JSON.parse(e.target.result);
+        saveDraft();
+        renderItems();
+      } catch {
+        alert("Invalid JSON file.");
+      }
+    };
+    reader.readAsText(file);
+    event.target.value = ""; // reset so same file can be re-imported
+  }
+
+  // ADD
+  function addItem(type) {
+    const p = type === "project" ? "p" : "a";
+    const title = document.getElementById(`${p}-title`).value.trim();
+    const desc  = document.getElementById(`${p}-desc`).value.trim();
+    const img   = document.getElementById(`${p}-img`).value.trim();
+    const link  = document.getElementById(`${p}-link`).value.trim();
+    if (!title || !link) { alert("Title and Link are required."); return; }
+    (type === "project" ? portfolioData.projects : portfolioData.artworks).push({ title, desc, img, link });
+    ["title","desc","img","link"].forEach(f => document.getElementById(`${p}-${f}`).value = "");
+    saveDraft();
+    renderItems();
+  }
+
+  // DELETE
+  function deleteItem(type, index) {
+    if (!confirm("Remove this item?")) return;
+    (type === "project" ? portfolioData.projects : portfolioData.artworks).splice(index, 1);
+    saveDraft();
+    renderItems();
+  }
+
+  // RENDER
+  function renderItems() {
+    const grid = document.getElementById("items-grid");
+    const all = [
+      ...portfolioData.projects.map((x,i) => ({...x, type:"project", index:i})),
+      ...portfolioData.artworks.map((x,i) => ({...x, type:"artwork",  index:i}))
+    ];
+    const total = all.length;
+    document.getElementById("total-badge").textContent  = `${total} total`;
+    document.getElementById("item-count").textContent   = `${total} item${total !== 1 ? "s" : ""}`;
+    document.getElementById("proj-count").textContent   = `${portfolioData.projects.length} projects`;
+    document.getElementById("art-count").textContent    = `${portfolioData.artworks.length} artworks`;
+
+    if (!total) {
+      grid.innerHTML = `<div class="empty-state">No items yet. Import your existing data.json or add items above.</div>`;
+      return;
+    }
+    grid.innerHTML = all.map(item => `
+      <div class="item-card">
+        ${item.img
+          ? `<img src="${item.img}" alt="${item.title}" onerror="this.outerHTML='<div class=item-no-img><span>🎮</span><span>No Preview</span></div>'"/>`
+          : `<div class="item-no-img"><span>🎮</span><span>No Preview</span></div>`
+        }
+        <span class="item-type-tag">${item.type}</span>
+        <button class="delete-btn" onclick="deleteItem('${item.type}', ${item.index})">✕</button>
+        <div class="item-card-body">
+          <h4>${item.title}</h4>
+          <p>${item.desc || "No description"}</p>
+        </div>
+      </div>`).join("");
+  }
+
+  // EXPORT
+  function exportJSON() {
+    const blob = new Blob([JSON.stringify(portfolioData, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "data.json";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+</script>
+</body>
+</html>

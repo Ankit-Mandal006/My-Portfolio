@@ -1,0 +1,90 @@
+{
+  "projects": [
+    {
+      "title": "Merry Catcher",
+      "desc": "Grab gifts but dodge the bombs",
+      "link": "https://ankit-mandal006.itch.io/merrycatcher",
+      "img": "Merry Catcher.gif"
+    },
+    {
+      "title": "Mr. M",
+      "desc": "A 2D casual game with 4 game modes",
+      "link": "https://ankit-mandal006.itch.io/mr-m",
+      "img": "Mr_M.gif"
+    },
+    {
+      "title": "Merry Catcher - Multiplayer",
+      "desc": "This winter, Santa showers gifts—grab them with your friends, but dodge the bombs.",
+      "link": "https://ankit-mandal006.itch.io/merry-catcher-multiplayer",
+      "img": ""
+    },
+    {
+      "title": "Trigger Tracker",
+      "desc": "2D space shooter game",
+      "link": "https://ankit-mandal006.itch.io/trigger-tracker",
+      "img": ""
+    },
+    {
+      "title": "Part Time Santa",
+      "desc": "2D top down shooting game made for micro jam 052",
+      "link": "https://ankit-mandal006.itch.io/part-time-santa",
+      "img": ""
+    },
+    {
+      "title": "Wither Woods",
+      "desc": "3D story driven horror game",
+      "link": "https://ankit-mandal006.itch.io/wither-woods",
+      "img": "WitherWoods.gif"
+    },
+    {
+      "title": "Spy-Fiction (Demo)",
+      "desc": "3D story driven isometric viewed stealth game",
+      "link": "https://ankit-mandal006.itch.io/spy-fiction",
+      "img": ""
+    }
+  ],
+  "artworks": [
+    {
+      "title": "Attack On Titan",
+      "desc": "#Traditional Art",
+      "link": "https://www.artstation.com/artwork/wr3GlY",
+      "img": "AOT.jpg"
+    },
+    {
+      "title": "Berserk",
+      "desc": "#Traditional Art",
+      "link": "https://www.artstation.com/artwork/qJwzaN",
+      "img": "Berserk.jpg"
+    },
+    {
+      "title": "Chainsaw Man",
+      "desc": "#Traditional Art",
+      "link": "https://www.artstation.com/artwork/NqV0A1",
+      "img": "chainsaw man.jpg"
+    },
+    {
+      "title": "Demon Slayer",
+      "desc": "#Traditional Art",
+      "link": "https://www.artstation.com/artwork/2B36AB",
+      "img": "Deamon Slayer.jpg"
+    },
+    {
+      "title": "Solo Leveling",
+      "desc": "#Traditional Art",
+      "link": "https://www.artstation.com/artwork/Bk50A6",
+      "img": "Solo Leveling.jpg"
+    },
+    {
+      "title": "Po - Kung Fu Panda",
+      "desc": "#3D Modeling",
+      "link": "https://www.artstation.com/artwork/GvKOK1",
+      "img": "Poo.gif"
+    },
+    {
+      "title": "Rock Golem",
+      "desc": "#3D Modeling",
+      "link": "https://www.artstation.com/artwork/0lVBq5",
+      "img": "Rock_Golem.gif"
+    }
+  ]
+}
